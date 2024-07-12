@@ -1,0 +1,29 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.nav {
+    display: flex;
+    align-items: center;
+    gap: 0 20px;
+    margin-top: 20px;
+}
+
+.nav li {
+    display: flex;
+    list-style: none;
+}
+
+.nav a {
+    text-decoration: none;
+    padding: 15px 30px;
+    border-radius: 5px;
+    background: rgb(196, 196, 196);
+    color: black;
+}
+
+.nav a.active {
+    background: crimson;
+    color: white;
+}

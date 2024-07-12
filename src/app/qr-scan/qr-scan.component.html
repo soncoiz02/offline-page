@@ -1,0 +1,6 @@
+<zxing-scanner
+    #scanner
+    [(device)]="currentDevice"
+    (scanSuccess)="onCodeResult($event)"
+    (permissionResponse)="onHasPermission($event)"
+  ></zxing-scanner>
