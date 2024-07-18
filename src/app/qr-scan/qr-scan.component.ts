@@ -35,7 +35,7 @@ export class QrScanComponent implements AfterViewInit {
 
   ngAfterViewInit(): void {
     this.action.isReady.subscribe((res: any) => {
-      this.handle(this.action, 'start');
+      // this.handle(this.action, 'start');
     });
   }
 
