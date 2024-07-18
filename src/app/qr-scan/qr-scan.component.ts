@@ -48,19 +48,14 @@ export class QrScanComponent implements AfterViewInit {
     }
 
     if (fn === 'start') {
-      action[fn](playDeviceFacingBack).subscribe((r: any) => {
-        this.qrResult = JSON.stringify(r)
-      }, alert);
+      action[fn](playDeviceFacingBack).subscribe((r: any) => console.log(r), alert);
     } else {
-      action[fn]().subscribe((r: any) => {
-        this.qrResult = JSON.stringify(r)
-      }, alert);
+      action[fn]().subscribe((r: any) => console.log(r), alert);
     }
   }
 
   onEvent(e: ScannerQRCodeResult[], action?: any): void {
     // e && action && action.pause();
-    console.log(e);
-    this.qrResult = JSON.stringify(e)
+    this.qrResult = JSON.stringify(e[0].value)
   }
 }

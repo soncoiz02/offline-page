@@ -1,13 +1,15 @@
-<div class="col-xs-12 col-md-6 col-lg-4 col-xl-3 my-1">
-  <select #select1 (change)="action.playDevice(select1.value)" class="form-select form-select-md">
-    <option [value]="null" selected>Select device</option>
-    <option *ngFor="let c of action.devices.value; let i = index" [value]="c.deviceId" [selected]="i == action.deviceIndexActive">{{c.label}}</option>
-  </select>
-</div>
 <ngx-scanner-qrcode #action="scanner" [config]="config" (event)="onEvent($event, action)"></ngx-scanner-qrcode>
-<button class="btn" [class.btn-info]="!action.isStart" [class.btn-warning]="action.isStart" [disabled]="action.isLoading" (click)="handle(action, action.isStart ? 'stop' : 'start')">
-  <img [src]="action.isStart ? 'https://id1945.github.io/images/svg/camera-off.svg' : 'https://id1945.github.io/images/svg/camera-on.svg'" width="30px"/>
-</button>
+<div style="display: flex;">
+  <button class="btn" [class.btn-info]="!action.isStart" [class.btn-warning]="action.isStart" [disabled]="action.isLoading" (click)="handle(action, action.isStart ? 'stop' : 'start')">
+    {{!action.isStart ? "Start scan" : "Stop scan"}}
+  </button>
+  <div class="col-xs-12 col-md-6 col-lg-4 col-xl-3 my-1">
+    <select *ngIf="action.isStart" #select1 (change)="action.playDevice(select1.value)" class="form-select form-select-md">
+      <option [value]="null" selected>Select device</option>
+      <option *ngFor="let c of action.devices.value; let i = index" [value]="c.deviceId" [selected]="i == action.deviceIndexActive">{{c.label}}</option>
+    </select>
+  </div>
+</div>
 <div class="qr-value">
     {{qrResult}}
 </div>
