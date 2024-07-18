@@ -22,9 +22,7 @@ export class QrScanComponent {
 
   //Scans the QR code
   onCodeResult(resultString: string): void {
-    if (this.checkQRJSON(resultString)) {
-      this.qrResult = JSON.parse(resultString);
-    }
+    this.qrResult = JSON.parse(resultString);
   }
 
   //Permission for the app to use the device camera
