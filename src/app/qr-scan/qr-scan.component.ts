@@ -1,10 +1,11 @@
+import { CommonModule } from '@angular/common';
 import { AfterViewInit, Component, ViewChild } from '@angular/core';
 import { NgxScannerQrcodeComponent, NgxScannerQrcodeModule, ScannerQRCodeConfig, ScannerQRCodeResult } from 'ngx-scanner-qrcode';
 
 @Component({
   selector: 'app-qr-scan',
   standalone: true,
-  imports: [NgxScannerQrcodeModule],
+  imports: [NgxScannerQrcodeModule, CommonModule],
   templateUrl: './qr-scan.component.html',
   styleUrl: './qr-scan.component.css'
 })
@@ -47,9 +48,13 @@ export class QrScanComponent implements AfterViewInit {
     }
 
     if (fn === 'start') {
-      action[fn](playDeviceFacingBack).subscribe((r: any) => console.log(fn, r), alert);
+      action[fn](playDeviceFacingBack).subscribe((r: any) => {
+        this.qrResult = JSON.stringify(r)
+      }, alert);
     } else {
-      action[fn]().subscribe((r: any) => console.log(fn, r), alert);
+      action[fn]().subscribe((r: any) => {
+        this.qrResult = JSON.stringify(r)
+      }, alert);
     }
   }
 
