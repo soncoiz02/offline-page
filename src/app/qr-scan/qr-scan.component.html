@@ -1,10 +1,4 @@
-<zxing-scanner
-    #scanner
-    [(device)]="currentDevice"
-    (scanSuccess)="onCodeResult($event)"
-    (permissionResponse)="onHasPermission($event)"
-  ></zxing-scanner>
-
+<ngx-scanner-qrcode #action="scanner" [config]="config" (event)="onEvent($event, action)"></ngx-scanner-qrcode>
 
 <div class="qr-value">
     {{qrResult}}

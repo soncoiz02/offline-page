@@ -9,8 +9,6 @@ import { NgxScannerQrcodeModule, ScannerQRCodeConfig, ScannerQRCodeResult } from
   styleUrl: './qr-scan.component.css'
 })
 export class QrScanComponent {
-  currentDevice: any;
-  hasPermission: boolean;
   qrResult: any
   config: ScannerQRCodeConfig = {
     constraints: {
@@ -32,45 +30,11 @@ export class QrScanComponent {
     // ],
   };
   constructor() {
-    this.currentDevice = null
-    this.hasPermission = false
-  }
-  clearResult(): void {
-    this.qrResult = null;
-  }
-
-  //Scans the QR code
-  onCodeResult(resultString: string): void {
-    this.qrResult = JSON.parse(resultString);
-  }
-
-  //Permission for the app to use the device camera
-  onHasPermission(has: boolean): void {
-    0
-    this.hasPermission = has;
   }
 
   onEvent(e: ScannerQRCodeResult[], action?: any): void {
     // e && action && action.pause();
     console.log(e);
     this.qrResult = JSON.stringify(e)
-  }
-
-  checkQRJSON(qrString: string): boolean {
-    if (
-      /^[\],:{}\s]*$/.test(
-        qrString
-          .replace(/\\["\\\/bfnrtu]/g, "@")
-          .replace(
-            /"[^"\\\n\r]*"|true|false|null|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?/g,
-            "]"
-          )
-          .replace(/(?:^|:|,)(?:\s*\[)+/g, "")
-      )
-    ) {
-      return true;
-    } else {
-      return false;
-    }
   }
 }
