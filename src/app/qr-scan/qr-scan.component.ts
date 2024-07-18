@@ -18,6 +18,17 @@ export class QrScanComponent implements AfterViewInit {
         width: window.innerWidth
       },
     },
+    canvasStyles: [
+      {
+        lineWidth: 3,
+        strokeStyle: 'yellow',
+        fillStyle: 'transparent'
+      },
+      {
+        font: '',
+        fillStyle: 'transparent'
+      }
+    ]
     // canvasStyles: [
     //   { /* layer */
     //     lineWidth: 1,
