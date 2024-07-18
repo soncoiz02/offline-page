@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { NgxScannerQrcodeModule, ScannerQRCodeConfig, ScannerQRCodeResult } from 'ngx-scanner-qrcode';
+import { AfterViewInit, Component, ViewChild } from '@angular/core';
+import { NgxScannerQrcodeComponent, NgxScannerQrcodeModule, ScannerQRCodeConfig, ScannerQRCodeResult } from 'ngx-scanner-qrcode';
 
 @Component({
   selector: 'app-qr-scan',
@@ -8,7 +8,8 @@ import { NgxScannerQrcodeModule, ScannerQRCodeConfig, ScannerQRCodeResult } from
   templateUrl: './qr-scan.component.html',
   styleUrl: './qr-scan.component.css'
 })
-export class QrScanComponent {
+export class QrScanComponent implements AfterViewInit {
+  @ViewChild('action') action!: NgxScannerQrcodeComponent;
   qrResult: any
   config: ScannerQRCodeConfig = {
     constraints: {
@@ -30,6 +31,26 @@ export class QrScanComponent {
     // ],
   };
   constructor() {
+  }
+
+  ngAfterViewInit(): void {
+    this.action.isReady.subscribe((res: any) => {
+      this.handle(this.action, 'start');
+    });
+  }
+
+  public handle(action: any, fn: string): void {
+    const playDeviceFacingBack = (devices: any[]) => {
+      // front camera or back camera check here!
+      const device = devices.find(f => (/back|rear|environment/gi.test(f.label))); // Default Back Facing Camera
+      action.playDevice(device ? device.deviceId : devices[0].deviceId);
+    }
+
+    if (fn === 'start') {
+      action[fn](playDeviceFacingBack).subscribe((r: any) => console.log(fn, r), alert);
+    } else {
+      action[fn]().subscribe((r: any) => console.log(fn, r), alert);
+    }
   }
 
   onEvent(e: ScannerQRCodeResult[], action?: any): void {
