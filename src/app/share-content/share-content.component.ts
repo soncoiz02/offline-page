@@ -13,7 +13,7 @@ export class ShareContentComponent {
       navigator.share({
         title: 'Tiêu đề test',
         text: 'Nội dung chia sẻ',
-        url: window.location.href,
+        url: "https://devecontractapp.intrustdss.xyz/api/download-file?id=B724BE54-FE99-465A-9363-7CD3B25DBE46&view=1#toolbar=0",
       })
         .then(() => console.log("ok"))
         .catch((error) => console.error('Lỗi khi chia sẻ:', error));
