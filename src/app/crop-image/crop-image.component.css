@@ -1,0 +1,9 @@
+.camera-feed {
+    border: 5px solid red; /* Adjust border color and width */
+    border-radius: 10px;    /* Optional: Make the border rounded */
+  }
+  
+  .canvas-result {
+    border: 5px solid blue; /* Border for the canvas */
+    border-radius: 10px;    /* Optional: Rounded border for the canvas */
+  }
