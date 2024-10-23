@@ -1,3 +1,5 @@
-<video #video width="640" height="480" autoplay class="camera-feed"></video>
-<button (click)="capture()">Capture Image</button>
-<canvas #canvas width="640" height="480" class="canvas-result"></canvas>
+<div class="container">
+    <video #video width="320" autoplay class="camera-feed"></video>
+    <button (click)="capture()"></button>
+    <canvas #canvas width="320" height="280" class="canvas-result" style="display: none;"></canvas>
+</div>

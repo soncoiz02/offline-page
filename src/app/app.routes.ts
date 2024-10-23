@@ -13,7 +13,7 @@ export const routes: Routes = [
         component: ShareContentComponent
     },
     {
-        path: 'crop-image',
+        path: '',
         component: CropImageComponent
     }
 ];
